@@ -53,12 +53,12 @@ module Echonest
     # * +filepath+ - Path (absolute or relative) to an audio file atleast 21 seconds in length
     # 
     # Returns a String
-    def echoprint_code(filepath)
+    def echoprint_code(filepath, o = 0, t = 0)
       if which('echoprint-codegen').nil?
         error = Error.new(6)
         raise Error.new(6), error.description
       else
-        response = `echoprint-codegen #{ filepath } 1 20`
+        response = `echoprint-codegen #{ filepath } #{ o } #{ t }`
         JSON.parse(response)[0]['code']
       end
     end
